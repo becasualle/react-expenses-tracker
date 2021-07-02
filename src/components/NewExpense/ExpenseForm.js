@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = props => {
+    // set states: default inputs value = '', add func for update state.
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
     
+    // function that updates enteredTitle = event.target.value. We will call it every time user type something in input
     const titleChangeHandler = event => {
         setEnteredTitle(event.target.value);
     };
@@ -19,28 +21,33 @@ const ExpenseForm = props => {
         setEnteredDate(event.target.value);
     };
 
-    // console.log(enteredTitle, enteredAmount, enteredDate);
-
+    // function that stores and pushes user input values to parent component NewExpense.js
     const submitHandler = event => {
+        // prevent page reload
         event.preventDefault();
 
+        // form data object storing input values after submitting form
         const expenseData = {
             title: enteredTitle,
             amount: enteredAmount,
             date: new Date(enteredDate)
         };
 
+        // send entered data from form to NewExpense and then to App.js
         props.onSaveExpenseData(expenseData);
+        // clear inputs values
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
     };
 
     return (
+        // add event listener - call function that stores and pushes data when submitting form
         <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                    <label>Title</label>
+                   {/* On every change call func that updates state and enteredTitle with input value (enteredTitle = event.target.value) */}
                    <input type="text" value={enteredTitle} onChange={titleChangeHandler}/>
                 </div>
                 <div className="new-expense__control">

@@ -26,20 +26,15 @@ const App = () => {
     },
   ];
 
+  // get expanse data and logging it to the console
   const addExpenseHandler = expense => {
     console.log('In App.js')
     console.log(expense);
   }
 
-  // return React.createElement(
-  //   "div",
-  //   {},
-  //   React.createElement("h2", {}, "Let's get started!"),
-  //   React.createElement(Expenses, { items: {expenses} })
-  // );
-
   return (
     <div>
+      {/* push func to NewExpense.js using props */}
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
