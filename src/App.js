@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
 
+// Create initial list of expenses
 const DUMMY_EXPENSES = [
   {
     id: "e1",
@@ -26,17 +27,19 @@ const DUMMY_EXPENSES = [
 ];
 
 const App = () => {
+  // create state for expenses, default value = DUMMY_EXPENSES
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
-  // get expanse data and logging it to the console
+  // update expense data, adding expense from form after user submit it
   const addExpenseHandler = expense => {
     setExpenses( prevExpenses => [expense, ...expenses] );
   };
 
   return (
     <div>
-      {/* push func to NewExpense.js using props */}
+      {/* push func that updates data to component creating a form */}
       <NewExpense onAddExpense={addExpenseHandler} />
+      {/* send current expenses array to component that creates list of expenses */}
       <Expenses items={expenses} />
     </div>
   );

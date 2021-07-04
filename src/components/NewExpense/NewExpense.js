@@ -14,11 +14,13 @@ const NewExpense = props => {
             ...enteredExpenseData,
             id: Math.random().toString()
         };
-        // push data object to function inside App.js
+        // push new expense data object to function inside App.js that updates expenses value using state
         props.onAddExpense(expenseData);
+
+        // after submitting form hide form and show button "add new expense"
         setIsEditing(false);
     };
-    // handler to change flag
+    // handlers - when true: show form, when false - show button
     const startEditingHandler = () => {
         setIsEditing(true);
     };
@@ -29,6 +31,7 @@ const NewExpense = props => {
 
     return (
         <div className="new-expense">
+            {/* if isEditing = false - create button, when true - create form. When click on button - change isEditing to true and show form */}
             {!isEditing && <button onClick={startEditingHandler}>Add New Expense</button> }
             {/* push saveExpenseDataHandler func to child element (ExpenseForm) using props */}
             {isEditing && <ExpenseForm onCancel={stopEditingHandler} onSaveExpenseData={saveExpenseDataHandler} />}

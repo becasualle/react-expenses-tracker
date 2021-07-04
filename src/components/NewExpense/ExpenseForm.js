@@ -29,7 +29,7 @@ const ExpenseForm = props => {
         // form data object storing input values after submitting form
         const expenseData = {
             title: enteredTitle,
-            amount: enteredAmount,
+            amount: +enteredAmount,
             date: new Date(enteredDate)
         };
 
